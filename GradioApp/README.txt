@@ -5,5 +5,6 @@ To do this:
 
 1. Run "python -m venv ." while in the GradioApp directory
 2. Run "pip install -r requirements.txt"
+3. Activate venv "source bin/activate"
 
 Once dependencies are installed, simply run "python gradiotest.py", and the app will host on your local machine.

@@ -8,19 +8,31 @@ from transformers import AutoTokenizer, pipeline
 nlp = load_model()
 prompt, pipe = create_pipeline()
 #demo function calls predict text from other file
-def entity_sentiment(text):
-    entities = extract_entities(text,nlp)
-    entity_context_list = extract_entities_with_context(text, nlp)
-    sentiment = get_sentiment(text)
-    entity_sentiments=analyze_entity_sentiments(entity_context_list)
-    sentiment_category = categorize_sentiment(sentiment)
-    llama_sentiment = predict_text(text,pipe,prompt)
-    return entities,entity_context_list,sentiment,entity_sentiments,sentiment_category, llama_sentiment
+def entity_sentiment(input):
+    entities = extract_entities(input,nlp)
+    entities_context = extract_entities_with_context(input, nlp)
+    #sentiment = get_sentiment(text)
+    entity_sentiment_scoreonly=analyze_entity_sentiments_score(entities_context)
+    #sentiment_category = categorize_sentiment(sentiment)
+    #average_sentiment = sum(entity_sentiments)/len(entity_sentiments)
+    average_score = calculate_avg_score(entity_sentiment_scoreonly)
+    average_sentiment = categorize_sentiment(average_score)
+
+    llama_sentiment = predict_text(input,pipe,prompt)
+    return entities,entities_context,entity_sentiment_scoreonly,average_score,average_sentiment,llama_sentiment
 
 demo = gr.Interface(
     fn=entity_sentiment,
     inputs=["text"],
-    outputs=["text","text","text","text","text","text"],
+    outputs=[
+        gr.Textbox(label="Entities"),
+        gr.Textbox(label="Entity Contexts"),
+        gr.Textbox(label="Entity Sentiment Scores"),
+        gr.Textbox(label="Average Score"),
+        gr.Textbox(label="Average Sentiment"),
+        gr.Textbox(label="Llama Sentiment")
+    ]
+    # output_label=["Entities","Entity Contexts", "Entity Sentiment Scores","Average Score of Entites","Llama sentiment on Lede"]
 )
 
 demo.launch(share=True)

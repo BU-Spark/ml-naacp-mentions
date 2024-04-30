@@ -34,6 +34,19 @@ def analyze_entity_sentiments(entity_contexts):
         sentiments.append((text, label, sentiment))
     return sentiments
 
+def analyze_entity_sentiments_score(entity_contexts):
+    sentiments = []
+    for text, label, context in entity_contexts:
+        sentiment = get_sentiment(context)
+        sentiments.append((sentiment))
+    return sentiments
+
+def calculate_avg_score(scores):
+    if scores:
+        return sum(scores) / len(scores)
+    else:
+        return float('inf')
+
 
 def categorize_sentiment(score):
     if score <= -0.1:
