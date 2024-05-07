@@ -2,16 +2,6 @@
 
 ## File structure:
 
-Deployment/
-\|--|
-\|  |--AICodeInit/
-\|     |--\__init__.py
-\|     |--LlamaCode.py
-\|     |--spacy_textblob_functions.py
-\|
-\|--app.py
-\|--requirements.txt
-
 * **app.py**: Includes the main logic for Huggingface application
 * **requirements.txt**: All the dependency required for the application (Llama, SpaCy, etc.)
 * **AICodeInit/**: helper functions for ML pipeline
@@ -44,9 +34,7 @@ https://llama.meta.com/llama-downloads/?source=post_page-----3a29fdbaa9ed-------
 
 Click your avatar on the upper right corner and go to your huggingface account settings. Click "access token" page and generate an access token. 
 
-Then, put the name of the access token as an argument to `os.getenv()` method.
-
-![image-20240507125121115](/Users/jialuli/Library/Application Support/typora-user-images/image-20240507125121115.png)
+Then, put the name of the access token as an argument to `os.getenv()` method in App.py file
 
 ### 4. Run the application
 
