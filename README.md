@@ -3,14 +3,14 @@
 ## File structure:
 
 Deployment/
-|--|
-|  |--AICodeInit/
-|     |--\__init__.py
-|     |--LlamaCode.py
-|     |--spacy_textblob_functions.py
-|
-|--app.py
-|--requirements.txt
+\|--|
+\|  |--AICodeInit/
+\|     |--\__init__.py
+\|     |--LlamaCode.py
+\|     |--spacy_textblob_functions.py
+\|
+\|--app.py
+\|--requirements.txt
 
 * **app.py**: Includes the main logic for Huggingface application
 * **requirements.txt**: All the dependency required for the application (Llama, SpaCy, etc.)
